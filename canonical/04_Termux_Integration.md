@@ -1867,6 +1867,62 @@ Optimal version support matrix
 
 ---
 
+# 70A. Evidence Classification and Version Conditions
+
+این بخش برای جلوگیری از برداشت بیش‌ازحد از منابع فنی اضافه شده است. «مستند شده» به معنی «برای تمام نسخه‌ها و دستگاه‌ها تضمین شده» نیست؛ «قابل prototype» نیز به معنی «برای production تصویب شده» نیست.
+
+## Evidence labels
+
+```text
+DOCUMENTED
+    در مستندات رسمی یا API عمومی فعلی صریحاً توصیف شده است.
+    فقط همان رفتار و شرایط مستندشده را پوشش می‌دهد.
+
+VERSION / ENVIRONMENT CONDITIONAL
+    به نسخه Termux، Android API level، targetSdk، permission،
+    تنظیمات کاربر یا محدودیت‌های سازنده دستگاه وابسته است.
+
+SOURCE-OBSERVED
+    در source code مشاهده شده، اما به‌تنهایی قرارداد عمومی و پایدار API نیست.
+
+ATLAS PROTOTYPE REQUIRED
+    رفتار یا تناسب آن برای معماری Atlas هنوز روی دستگاه هدف اثبات نشده است.
+
+OPEN DECISION
+    انتخاب معماری Atlas هنوز تصویب نشده است؛ سند فنی آن را به‌تنهایی قفل نمی‌کند.
+```
+
+## Evidence matrix
+
+| Claim | Current evidence | Condition / limit | Atlas status |
+|---|---|---|---|
+| Third-party apps can request command execution in Termux context through `RUN_COMMAND` | Official RUN_COMMAND documentation | Documented since Termux `0.95`; exact extras and result behavior have separate version requirements | Documented mechanism; prototype required |
+| Returning a result to the caller | Official RUN_COMMAND documentation | Java Intent path; documented as requiring Termux `>= 0.109`; `am startservice` does not return the result | Version-conditional; prototype required |
+| Calling RUN_COMMAND | Official RUN_COMMAND documentation | Caller permission `com.termux.permission.RUN_COMMAND` must be granted and `allow-external-apps=true` must be configured in Termux | Required setup; user consent/configuration must remain explicit |
+| Package visibility for Termux | Official RUN_COMMAND documentation | Relevant when Atlas targets SDK 30+ / Android 11+ | Compatibility gate |
+| Starting a terminal session from background | Official RUN_COMMAND documentation | Android 10+ background activity restrictions may block terminal-session startup; Draw Over Apps is described as a workaround in the documented scenario. Background commands are a distinct path | Device/API-dependent; prototype required |
+| Termux integration libraries | Official Termux Libraries documentation | Published library versions move with Termux app versions; documentation states JitPack publication for Termux `>= 0.116`. Adding a library introduces version and licensing constraints | Feasible option, not selected architecture |
+| Using Termux-provided terminal UI | Official Termux Libraries documentation | `terminal-view` is required when using the terminal provided by Termux; dependency and version compatibility must be tested | Prototype required; no dependency decision yet |
+| `RunCommandService` internal forwarding behavior | Termux source code | Source implementation may change and is not by itself a public API guarantee | Source-observed only |
+| Interactive session, direct PTY, local socket, cancellation, long-running streaming, process-death recovery | No Atlas device evidence established in this document | Official component existence does not prove end-to-end suitability for Atlas | Prototype / spike required; decisions remain open |
+| Filesystem access to private Termux paths and shared storage | Official Termux/Android documentation describes distinct permissions and storage boundaries | Behavior depends on path ownership, Android version, permissions, URI grants and selected API | Separate filesystem spike required |
+
+## Rules for the implementing agent
+
+1. Do not generalize a documented behavior beyond its stated version, API level, permission or invocation path.
+2. Do not treat source-code observations as stable public API guarantees.
+3. When a version or device condition is unknown, record it as an unresolved compatibility input; do not silently assume the most permissive case.
+4. A prototype must record device/Android version, Termux version, target SDK, relevant permissions/settings, exact invocation path, expected result and observed result.
+5. Only update an Atlas decision after the evidence and acceptance criteria are recorded. Adding a source link is not validation evidence for device behavior.
+
+Primary sources checked for this classification:
+- [RUN_COMMAND Intent](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent)
+- [Termux Libraries](https://github.com/termux/termux-app/wiki/Termux-Libraries)
+- [RunCommandService source](https://github.com/termux/termux-app/blob/master/app/src/main/java/com/termux/app/RunCommandService.java)
+- [Android Parcelables and Bundles guidance](https://developer.android.com/guide/components/activities/parcelables-and-bundles)
+
+---
+
 # 71. Decisions
 
 تصمیمات این نسخه:

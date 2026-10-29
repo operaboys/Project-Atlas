@@ -309,7 +309,7 @@ Raw result نباید مستقیماً UI contract شود.
 
 RUN_COMMAND از Android Intent transport استفاده می‌کند.
 
-مستندات Android توصیه می‌کنند دادهٔ ارسالی در Intent به چند KB محدود بماند؛ Binder transaction buffer فعلی 1MB است و بین transactionهای هم‌زمان فرایند به اشتراک گذاشته می‌شود، بنابراین این مقدار سقف امن برای یک Intent نیست. جزئیات و محدودیت‌های command/extras در مستندات RUN_COMMAND نیز باید رعایت شوند. [Android Parcelable and Bundle guidance](https://developer.android.com/guide/components/activities/parcelables-and-bundles); [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent). [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent); [Android Parcelable and Bundle guidance](https://developer.android.com/guide/components/activities/parcelables-and-bundles)
+مستندات Android توصیه می‌کنند دادهٔ ارسالی در Intent به چند KB محدود بماند؛ Binder transaction buffer فعلی 1MB است و بین transactionهای هم‌زمان فرایند به اشتراک گذاشته می‌شود، بنابراین این مقدار سقف امن برای یک Intent نیست. جزئیات و محدودیت‌های command/extras در مستندات RUN_COMMAND نیز باید رعایت شوند. [Android Parcelable and Bundle guidance](https://developer.android.com/guide/components/activities/parcelables-and-bundles); [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent).
 
 نتیجه معماری:
 

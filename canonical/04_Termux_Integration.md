@@ -120,9 +120,9 @@ Atlas باید complexity غیرضروری را در UX پنهان کند، ام
 
 بررسی منابع رسمی Termux نشان می‌دهد که Termux برای third-party apps یک مسیر رسمی برای اجرای command دارد: `RUN_COMMAND` Intent و `RunCommandService`.
 
-در مستندات فعلی، این مسیر از Termux `0.95` به بعد برای third-party apps وجود دارد. اجرای command از طریق Java ممکن است result را نیز برگرداند، و برای استفاده نیاز به permission مربوط به `RUN_COMMAND` و فعال بودن `allow-external-apps` دارد. citeturn0search1turn1search1
+در مستندات فعلی، این مسیر از Termux `0.95` به بعد برای third-party apps وجود دارد. اجرای command از طریق Java ممکن است result را نیز برگرداند، و برای استفاده نیاز به permission مربوط به `RUN_COMMAND` و فعال بودن `allow-external-apps` دارد. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent)
 
-Source فعلی `RunCommandService` نیز نشان می‌دهد که این سرویس execution request را دریافت کرده و آن را به `TermuxService` برای execution واقعی forward می‌کند. citeturn0search0turn1search7
+Source فعلی `RunCommandService` نیز نشان می‌دهد که این سرویس execution request را دریافت کرده و آن را به `TermuxService` برای execution واقعی forward می‌کند. [RunCommandService source](https://github.com/termux/termux-app/blob/master/app/src/main/java/com/termux/app/RunCommandService.java)
 
 نتیجه معماری:
 
@@ -200,7 +200,7 @@ pending intent for results
 result directory configuration
 ```
 
-مستندات رسمی همچنین تصریح می‌کنند که `command path` ورودی اصلی است و `working directory` قابل تعیین است. citeturn0search1turn0search0
+مستندات رسمی همچنین تصریح می‌کنند که `command path` ورودی اصلی است و `working directory` قابل تعیین است. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent); [RunCommandService source](https://github.com/termux/termux-app/blob/master/app/src/main/java/com/termux/app/RunCommandService.java)
 
 برای Atlas این mapping باید semantic باشد:
 
@@ -242,7 +242,7 @@ allow-external-apps=true
 
 باید در Termux تنظیم شده باشد.
 
-برای Android target SDK 30+ نیز package visibility مربوط به `com.termux` باید رعایت شود. citeturn1search0turn1search1turn1search2
+برای Android target SDK 30+ نیز package visibility مربوط به `com.termux` باید رعایت شود. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent)
 
 بنابراین Atlas نباید این prerequisites را silently assume کند.
 
@@ -266,9 +266,9 @@ Unknown
 
 RUN_COMMAND عملاً امکان اجرای command در context ترموکس را در اختیار caller قرار می‌دهد.
 
-خود Termux نیز این را یک boundary امنیتی می‌داند و permission و `allow-external-apps` را به‌عنوان کنترل استفاده می‌کند. citeturn1search0turn1search3
+خود Termux نیز این را یک boundary امنیتی می‌داند و permission و `allow-external-apps` را به‌عنوان کنترل استفاده می‌کند. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent); [Termux properties manual](https://github.com/termux/termux-tools/blob/master/doc/termux.1.md.in)
 
-Source فعلی همچنین نشان می‌دهد که در صورت نقض policy مربوط به external apps، execution می‌تواند fail شود و notification/diagnostic به کاربر ارائه شود. citeturn1search7
+Source فعلی همچنین نشان می‌دهد که در صورت نقض policy مربوط به external apps، execution می‌تواند fail شود و notification/diagnostic به کاربر ارائه شود. [RunCommandService source](https://github.com/termux/termux-app/blob/master/app/src/main/java/com/termux/app/RunCommandService.java)
 
 Atlas باید این boundary را به security model خود منتقل کند، نه اینکه آن را یک technical nuisance تلقی کند.
 
@@ -289,7 +289,7 @@ error message
 execution id
 ```
 
-باشد. citeturn1search1turn1search5
+باشد. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent); [Termux Libraries docs](https://github.com/termux/termux-app/wiki/Termux-Libraries)
 
 این برای Action Architecture مهم است:
 
@@ -309,7 +309,7 @@ Raw result نباید مستقیماً UI contract شود.
 
 RUN_COMMAND از Android Intent transport استفاده می‌کند.
 
-مستندات رسمی هشدار می‌دهند که Android Intent extras محدودیت اندازه دارند و مجموع extras نباید از حدود 500KB عبور کند؛ همچنین برای arguments/command نیز محدودیت‌های اندازه وجود دارد. citeturn0search1turn0search2
+مستندات Android توصیه می‌کنند دادهٔ ارسالی در Intent به چند KB محدود بماند؛ Binder transaction buffer فعلی 1MB است و بین transactionهای هم‌زمان فرایند به اشتراک گذاشته می‌شود، بنابراین این مقدار سقف امن برای یک Intent نیست. جزئیات و محدودیت‌های command/extras در مستندات RUN_COMMAND نیز باید رعایت شوند. [Android Parcelable and Bundle guidance](https://developer.android.com/guide/components/activities/parcelables-and-bundles); [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent). [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent); [Android Parcelable and Bundle guidance](https://developer.android.com/guide/components/activities/parcelables-and-bundles)
 
 نتیجه معماری:
 
@@ -329,7 +329,7 @@ Large output / file / artifact
 
 # 11. Background vs Terminal Session
 
-RUN_COMMAND می‌تواند execution را در background یا terminal session انجام دهد و برای foreground command، session action نیز قابل تعیین است. citeturn0search1turn0search0
+RUN_COMMAND می‌تواند execution را در background یا terminal session انجام دهد و برای foreground command، session action نیز قابل تعیین است. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent); [RunCommandService source](https://github.com/termux/termux-app/blob/master/app/src/main/java/com/termux/app/RunCommandService.java)
 
 بنابراین Atlas حداقل دو semantic execution mode دارد:
 
@@ -359,7 +359,7 @@ RunScript
 
 Terminal در Atlas باید first-class باقی بماند.
 
-Termux source فعلی `TerminalSession` را به‌عنوان یک terminal session متصل به یک process تعریف می‌کند و session دارای process I/O، terminal emulation، resize و process lifecycle است. citeturn0search4
+Termux source فعلی `TerminalSession` را به‌عنوان یک terminal session متصل به یک process تعریف می‌کند و session دارای process I/O، terminal emulation، resize و process lifecycle است. [TerminalSession source](https://github.com/termux/termux-app/blob/master/terminal-emulator/src/main/java/com/termux/terminal/TerminalSession.java)
 
 این evidence نشان می‌دهد که terminal/session یک concern واقعی و مستقل از simple command execution است.
 
@@ -415,7 +415,7 @@ terminal-view
 terminal-emulator
 ```
 
-برای third-party apps، `termux-shared` برای تعامل با `termux-app` و constants/utilities معرفی شده و در صورت نیاز به terminal ارائه‌شده توسط Termux، `terminal-view` نیز مطرح است. citeturn1search5turn1search8
+برای third-party apps، `termux-shared` برای تعامل با `termux-app` و constants/utilities معرفی شده و در صورت نیاز به terminal ارائه‌شده توسط Termux، `terminal-view` نیز مطرح است. [Termux Libraries docs](https://github.com/termux/termux-app/wiki/Termux-Libraries)
 
 این به این معنی نیست که Atlas باید حتماً Termux libraries را مستقیماً embed کند.
 
@@ -493,7 +493,7 @@ Socket / Local Socket
 
 را برای ارتباط با Termux مطرح کرده‌اند.
 
-منابع Termux فعلی نیز وجود library مربوط به local socket را در اکوسیستم Termux نشان می‌دهند؛ مستندات libraries به `lib-local-socket` و کلاس‌هایی مانند `Local*Socket` اشاره می‌کنند. citeturn1search5
+منابع Termux فعلی نیز وجود library مربوط به local socket را در اکوسیستم Termux نشان می‌دهند؛ مستندات libraries به `lib-local-socket` و کلاس‌هایی مانند `Local*Socket` اشاره می‌کنند. [Termux Libraries docs](https://github.com/termux/termux-app/wiki/Termux-Libraries)
 
 اما وجود library به‌تنهایی به معنی مناسب‌بودن آن برای Atlas نیست.
 
@@ -516,7 +516,7 @@ Security
 
 Termux:API نباید با Termux app execution API اشتباه گرفته شود.
 
-مستندات رسمی Termux:API آن را به‌عنوان appی معرفی می‌کنند که Android APIها را برای command-line programs و scripts در دسترس قرار می‌دهد. citeturn1search4turn1search6
+مستندات رسمی Termux:API آن را به‌عنوان appی معرفی می‌کنند که Android APIها را برای command-line programs و scripts در دسترس قرار می‌دهد. [Termux:API README](https://github.com/termux/termux-api/blob/master/README.md)
 
 بنابراین:
 
@@ -541,7 +541,7 @@ sessions
 
 # 19. Termux:API Architecture
 
-منابع رسمی Termux:API توضیح می‌دهند که helper binary از local anonymous sockets برای انتقال stdin/stdout به API receiver استفاده می‌کند. citeturn1search4
+منابع رسمی Termux:API توضیح می‌دهند که helper binary از local anonymous sockets برای انتقال stdin/stdout به API receiver استفاده می‌کند. [Termux:API README](https://github.com/termux/termux-api/blob/master/README.md)
 
 این نکته مهم است:
 
@@ -572,7 +572,7 @@ Atlas نباید اینها را یک filesystem واحد فرض کند.
 
 Commandهایی که در Termux context اجرا می‌شوند می‌توانند به محیط فایل Termux دسترسی داشته باشند.
 
-RUN_COMMAND مستندات نیز working directory و executable path را در context Termux تعریف می‌کنند. citeturn0search1
+RUN_COMMAND مستندات نیز working directory و executable path را در context Termux تعریف می‌کنند. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent)
 
 برای Atlas، مسیرهایی مانند:
 
@@ -597,7 +597,7 @@ $PREFIX
 /storage/emulated/0
 ```
 
-هستند. citeturn1search0turn1search13
+هستند. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent)
 
 بنابراین:
 
@@ -668,7 +668,7 @@ Termux plugin ecosystem
 
 Android target SDK 30+ می‌تواند package visibility را تحت تأثیر قرار دهد.
 
-مستندات Termux برای RUN_COMMAND صراحتاً نیاز به visibility مناسب برای package `com.termux` را در این سناریو مطرح می‌کنند. citeturn1search0turn1search5
+مستندات Termux برای RUN_COMMAND صراحتاً نیاز به visibility مناسب برای package `com.termux` را در این سناریو مطرح می‌کنند. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent); [Termux Libraries docs](https://github.com/termux/termux-app/wiki/Termux-Libraries)
 
 Atlas باید installation/integration diagnostics داشته باشد:
 
@@ -685,7 +685,7 @@ Is package visible?
 
 Android محدودیت‌های background execution و activity launch دارند.
 
-مستندات Termux اشاره می‌کنند که برای terminal sessions که از background شروع می‌شوند، Android >=10 می‌تواند محدودیت ایجاد کند و در برخی شرایط Draw Over Apps permission مطرح می‌شود. citeturn1search0turn1search13
+مستندات Termux اشاره می‌کنند که برای terminal sessions که از background شروع می‌شوند، Android >=10 می‌تواند محدودیت ایجاد کند و در برخی شرایط Draw Over Apps permission مطرح می‌شود. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent)
 
 نتیجه:
 
@@ -705,7 +705,7 @@ Atlas نباید این حالت را به‌صورت silent failure پنهان 
 
 # 28. Battery Optimization
 
-Termux documentation همچنین به aggressive process killing و battery optimization به‌عنوان یک عامل محیطی اشاره می‌کند. citeturn1search0
+Termux documentation همچنین به aggressive process killing و battery optimization به‌عنوان یک عامل محیطی اشاره می‌کند. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent)
 
 این مورد باید در Diagnostics به‌عنوان:
 
@@ -963,7 +963,7 @@ session features
 result file features
 ```
 
-ممکن است version requirements متفاوتی داشته باشند. مستندات رسمی برخی extras را به versionهای مشخص Termux وابسته می‌دانند. citeturn0search1
+ممکن است version requirements متفاوتی داشته باشند. مستندات رسمی برخی extras را به versionهای مشخص Termux وابسته می‌دانند. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent)
 
 بنابراین:
 
@@ -1140,7 +1140,7 @@ unknown-state handling
 
 مهم است.
 
-RUN_COMMAND نیز execution/result context و execution id را در result path پشتیبانی می‌کند. citeturn1search1turn1search5
+RUN_COMMAND نیز execution/result context و execution id را در result path پشتیبانی می‌کند. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent); [Termux Libraries docs](https://github.com/termux/termux-app/wiki/Termux-Libraries)
 
 ---
 
@@ -1325,7 +1325,7 @@ explicit override when required
 
 Working directory یک جزء مهم ExecutionRequest است.
 
-Termux RUN_COMMAND آن را مستقیماً پشتیبانی می‌کند و default آن در documentation به Termux home اشاره شده است. citeturn0search1
+Termux RUN_COMMAND آن را مستقیماً پشتیبانی می‌کند و default آن در documentation به Termux home اشاره شده است. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent)
 
 Atlas باید distinction زیر را حفظ کند:
 
@@ -1513,7 +1513,7 @@ filesystem bridge
 
 باید در Termux app integration layer ارزیابی شوند، نه با فرض Termux:API universalization.
 
-Termux:API رسمی خود را appی برای expose کردن Android API به command-line programs معرفی می‌کند. citeturn1search4
+Termux:API رسمی خود را appی برای expose کردن Android API به command-line programs معرفی می‌کند. [Termux:API README](https://github.com/termux/termux-api/blob/master/README.md)
 
 ---
 
@@ -1571,7 +1571,7 @@ user-facing explanation
 
 # 62. Privacy
 
-RUN_COMMAND documentation هشدار می‌دهد که third-party caller در صورت دریافت result می‌تواند به session transcript یا stdout/stderr دسترسی پیدا کند. citeturn1search2
+RUN_COMMAND documentation هشدار می‌دهد که third-party caller در صورت دریافت result می‌تواند به session transcript یا stdout/stderr دسترسی پیدا کند. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent)
 
 برای Atlas این یعنی:
 
@@ -1847,7 +1847,7 @@ Termux publishes integration libraries.
 Termux:API is a separate Android API exposure mechanism.
 ```
 
-این موارد بر اساس منابع رسمی فعلی Termux بررسی شده‌اند. citeturn0search1turn0search0turn0search4turn1search4turn1search5
+این موارد بر اساس منابع رسمی فعلی Termux بررسی شده‌اند. [RUN_COMMAND docs](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent); [RunCommandService source](https://github.com/termux/termux-app/blob/master/app/src/main/java/com/termux/app/RunCommandService.java); [TerminalSession source](https://github.com/termux/termux-app/blob/master/terminal-emulator/src/main/java/com/termux/terminal/TerminalSession.java); [Termux:API README](https://github.com/termux/termux-api/blob/master/README.md); [Termux Libraries docs](https://github.com/termux/termux-app/wiki/Termux-Libraries)
 
 ## Not yet validated for Atlas
 

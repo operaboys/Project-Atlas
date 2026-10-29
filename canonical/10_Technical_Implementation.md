@@ -34,27 +34,62 @@ Test Strategy
 
 ##2. Implementation Status Model
 
-هر جزء implementation باید یکی از وضعیت‌های زیر را داشته باشد:
+این مدل وضعیت تصمیم‌ها و اجزای اجرایی را مشخص می‌کند. این وضعیت‌ها با وضعیت شواهد در سند `09_Validation_Gates.md` مرتبط‌اند، اما جایگزین آن‌ها نیستند.
 
+### 2.1 Decision / Implementation Status
+
+```text
 LOCKED
-    تصمیم معماری معتبر و قابل اجرا
+    تصمیم صریحاً تثبیت شده و برای implementation الزام‌آور است.
+    دامنه و محدودیت‌های آن باید روشن باشد.
 
 CONDITIONAL
-    فقط تحت شرط مشخص
+    فقط در صورت برقرار بودن شرط‌های صریح قابل اجراست.
+    اگر شرط احراز نشده، بخش وابسته نباید به‌صورت production پیاده‌سازی شود.
 
 PROTOTYPE
-    برای validation؛ هنوز production contract نیست
+    فقط برای آزمودن فرضیه یا جمع‌آوری evidence.
+    کد و قرارداد prototype به‌خودی‌خود production contract نیستند.
 
 OPEN
-    تصمیم هنوز باز است
+    تصمیم هنوز گرفته نشده است.
+    این وضعیت مجوز حدس زدن، انتخاب خودسرانه یا قفل کردن معماری نیست.
 
 DEFERRED
-    عمداً به آینده منتقل شده
+    تصمیم یا قابلیت عمداً به مرحله‌ای بعد منتقل شده است.
+    نباید وارد scope فعلی شود مگر با تصمیم صریح و ثبت‌شده.
+```
 
-قانون:
+### 2.2 Rules for the Implementing Agent
 
-> **OPEN ≠ permission to guess**
+1. فقط مواردی را الزام‌آور تلقی کن که وضعیت و دامنه الزام آن‌ها صریح است؛ از واژه‌هایی مثل «پیشنهادی»، «candidate»، «draft» یا «نیازمند اعتبارسنجی» تأیید نهایی استنباط نکن.
+2. برای هر تصمیم `OPEN`، پیش از پیاده‌سازی وابسته، تصمیم باز و وابستگی آن را گزارش کن. حدس یا workaround را بی‌اجازه به تصمیم معماری تبدیل نکن.
+3. برای `CONDITIONAL`، شرط و evidence لازم را بررسی کن؛ اگر برقرار نیست، کار وابسته را متوقف کن یا فقط یک prototype مستقل و صریحاً مجاز بساز.
+4. کد `PROTOTYPE` را به‌عنوان راه‌حل production معرفی نکن و از آن قرارداد قطعی استخراج نکن.
+5. موارد `DEFERRED` را به‌طور ضمنی به scope فعلی اضافه نکن.
+6. اگر دو سند یا دو تصمیم با هم تعارض دارند، تعارض را ثبت و برای تعیین تکلیف متوقف شو؛ خودسرانه یکی را انتخاب نکن.
+7. پیش از هر تغییر معماری، وضعیت تصمیم، دلیل، evidence و اثر آن بر اسناد وابسته را مشخص کن. تغییر کد به‌تنهایی تصمیم معماری را تصویب نمی‌کند.
 
+### 2.3 Relationship to Validation Evidence
+
+وضعیت implementation به‌تنهایی اثبات نمی‌کند که فرض فنی معتبر است. برای ادعای اعتبارسنجی، از وضعیت‌های evidence در سند `09_Validation_Gates.md` و معیار پذیرش مربوط استفاده کن.
+
+```text
+ASSUMPTION ≠ PROTOTYPED ≠ VALIDATED
+
+A prototype passing a build
+    ≠
+Architecture validated
+```
+
+هرجا یک تصمیم برای عبور از Validation Gate مسدود است، آن را صرفاً به دلیل وجود در Blueprint به `LOCKED` ارتقا نده.
+
+اصل اجرایی:
+
+> **OPEN ≠ permission to guess. A blueprint describes intent; explicit status and evidence determine what may be implemented.**
+
+---
+ 
 ##3. Target Architecture
 
 مدل اجرایی:

@@ -3934,25 +3934,27 @@ Composable → raw Termux API
 ترتیب پیشنهادی:
 
 ```text
-10 Core Philosophy
+01_Core_Philosophy.md
         ↓
-11 Capability Model
+02_Capability_Model.md
         ↓
-12 Action Architecture
+03_Action_Architecture.md
         ↓
-13 Termux Integration
+04_Termux_Integration.md
         ↓
-14 Project / Workspace
+05_Project_Workspace.md
         ↓
-15 Revised Lite Blueprint
+06_Lite_Blueprint.md
         ↓
-16 UI / Interaction / Component Blueprint
+07_UI_Component_Blueprint.md (this document)
         ↓
-17 Validation & Prototype Gates
+08_Design_System.md
         ↓
-18 Technical Implementation Blueprint
+09_Validation_Gates.md
         ↓
-19 Roadmap
+10_Technical_Implementation.md
+        ↓
+11_Roadmap_Sprints.md
 ```
 
 مرحله بعدی نباید فوراً به full implementation تبدیل شود.

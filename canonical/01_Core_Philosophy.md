@@ -1219,7 +1219,7 @@ Terminal دیگر کل محصول نیست؛ یکی از first-class interfaces 
         │       (جایگزین archive/v01_03_UI_Design_Guide.md + archive/v01_04_Component_Library.md)
         │
         └── 12_Atlas_Pro_Vision.md        🔮 Future Vision — خارج از scope Lite
-                (منتقل‌شده از v01_02_Blueprint_Pro.md)
+                (نسخه فعلی مرجع Pro؛ فایل منبع تاریخی در آرشیو فعلی موجود نیست)
 ```
 
 تمام اسناد یادشده در `canonical/` موجودند.

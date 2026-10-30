@@ -1990,23 +1990,29 @@ Termux path = universal filesystem path
 مرحله بعد:
 
 ```text
-10 Core Philosophy
+01_Core_Philosophy.md
         ↓
-11 Capability Model
+02_Capability_Model.md
         ↓
-12 Action Architecture
+03_Action_Architecture.md
         ↓
-13 Termux Integration
+04_Termux_Integration.md
         ↓
-14 Project / Workspace
+05_Project_Workspace.md
         ↓
-REVISE LITE BLUEPRINT
+06_Lite_Blueprint.md
         ↓
-UI / Interaction / Component Blueprint
+07_UI_Component_Blueprint.md
         ↓
-Roadmap
+08_Design_System.md
         ↓
-Pro
+09_Validation_Gates.md
+        ↓
+10_Technical_Implementation.md
+        ↓
+11_Roadmap_Sprints.md
+        ↓
+12_Atlas_Pro_Vision.md
 ```
 
 Blueprint Lite باید اکنون بر اساس این چهار لایه بازسازی شود، نه اینکه صرفاً فایل قدیمی patch شود.

@@ -1204,22 +1204,22 @@ Terminal دیگر کل محصول نیست؛ یکی از first-class interfaces 
 ```text
 01_Core_Philosophy.md
         │
-        ├── 02_Capability_Model.md        ✅ بازطراحی و تصویب‌شده
+        ├── 02_Capability_Model.md        بازطراحی‌شده؛ وضعیت تصمیم‌گیری مطابق سربرگ هر سند
         │
-        ├── 03_Action_Architecture.md     ✅ بازطراحی و تصویب‌شده
+        ├── 03_Action_Architecture.md     بازطراحی‌شده؛ وضعیت تصمیم‌گیری مطابق سربرگ هر سند
         │
-        ├── 04_Termux_Integration.md      ✅ بازطراحی و تصویب‌شده
+        ├── 04_Termux_Integration.md      بازطراحی‌شده؛ وضعیت تصمیم‌گیری مطابق سربرگ هر سند
         │
-        ├── 05_Project_Workspace.md       ✅ بازطراحی و تصویب‌شده
+        ├── 05_Project_Workspace.md       بازطراحی‌شده؛ وضعیت تصمیم‌گیری مطابق سربرگ هر سند
         │
-        ├── 06_Lite_Blueprint.md          ✅ بازطراحی و تصویب‌شده
+        ├── 06_Lite_Blueprint.md          بازطراحی‌شده؛ وضعیت تصمیم‌گیری مطابق سربرگ هر سند
         │       (جایگزین archive/v01_01_Blueprint_Lite.md)
         │
-        ├── 07_UI_Component_Blueprint.md  ✅ بازطراحی و تصویب‌شده
+        ├── 07_UI_Component_Blueprint.md  بازطراحی‌شده؛ وضعیت تصمیم‌گیری مطابق سربرگ هر سند
         │       (جایگزین archive/v01_03_UI_Design_Guide.md + archive/v01_04_Component_Library.md)
         │
         └── 12_Atlas_Pro_Vision.md        🔮 Future Vision — خارج از scope Lite
-                (منتقل‌شده از v01_02_Blueprint_Pro.md)
+                (نسخه فعلی مرجع Pro؛ فایل منبع تاریخی در آرشیو فعلی موجود نیست)
 ```
 
 تمام اسناد یادشده در `canonical/` موجودند.

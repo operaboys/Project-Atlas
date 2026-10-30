@@ -2119,9 +2119,9 @@ Permission mapping
 قدم بعدی رسمی:
 
 ```text
-11 Capability Model
+02_Capability_Model.md
         ↓
-12 Action Architecture
+03_Action_Architecture.md
 ```
 
 در `03_Action_Architecture.md` باید موارد زیر به قرارداد دقیق تبدیل شوند:
@@ -2148,7 +2148,7 @@ Capability declarations
 پس از آن:
 
 ```text
-13 Termux Integration Specification
+04_Termux_Integration.md
 ```
 
 باید Capabilityها و Actionها را به مکانیزم‌های واقعی Termux متصل و assumptions را validate کند.

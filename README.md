@@ -37,19 +37,19 @@ Project Atlas/
 
 | # | فایل | موضوع | **نقش** | **بلوغ تصمیم** |
 |---|------|--------|----------|-----------------|
-| 01 | `01_Core_Philosophy.md` | فلسفه بنیادی و هویت Atlas | 📘 Source of Truth | Draft |
-| 02 | `02_Capability_Model.md` | مدل Capability و پایه Feature admission | 📘 مدل پایه | Decision Candidate |
-| 03 | `03_Action_Architecture.md` | معماری Action-centered | 📘 معماری | Decision Candidate |
-| 04 | `04_Termux_Integration.md` | مرز فنی یکپارچه‌سازی با Termux | 📘 قرارداد فنی | **Validation Required** |
-| 05 | `05_Project_Workspace.md` | مدل Project و Workspace | 📘 مدل معنایی | Decision Candidate |
-| 06 | `06_Lite_Blueprint.md` | بلوپرینت Atlas Lite | 📘 Blueprint محصول | Decision Candidate |
-| 07 | `07_UI_Component_Blueprint.md` | معماری UI و Interaction | 📘 قرارداد UX | Contract Candidate |
-| 08 | `08_Design_System.md` | سیستم طراحی بصری | 🎨 Design Tokens | **Draft / Validation Required** |
-| 09 | `09_Validation_Gates.md` | گیت‌های اعتبارسنجی Prototype | 🚦 قرارداد اعتبارسنجی | Active Contract |
-| 10 | `10_Technical_Implementation.md` | قرارداد پیاده‌سازی فنی | 🔧 قرارداد فنی | Active — دارای تصمیمات OPEN |
-| 11 | `11_Roadmap_Sprints.md` | نقشه راه و Sprint breakdown | 🗺️ مسیر اجرا | Execution Roadmap |
-| 12 | `12_Atlas_Pro_Vision.md` | چشم‌انداز Atlas Pro | 🔮 Future Vision | خارج از scope Lite |
-| 13 | `13_Changelog.md` | تاریخچه تغییرات | 📝 Record | — |
+| 01 | [`01_Core_Philosophy.md`](canonical/01_Core_Philosophy.md) | فلسفه بنیادی و هویت Atlas | 📘 Source of Truth | Draft |
+| 02 | [`02_Capability_Model.md`](canonical/02_Capability_Model.md) | مدل Capability و پایه Feature admission | 📘 مدل پایه | Decision Candidate |
+| 03 | [`03_Action_Architecture.md`](canonical/03_Action_Architecture.md) | معماری Action-centered | 📘 معماری | Decision Candidate |
+| 04 | [`04_Termux_Integration.md`](canonical/04_Termux_Integration.md) | مرز فنی یکپارچه‌سازی با Termux | 📘 قرارداد فنی | **Validation Required** |
+| 05 | [`05_Project_Workspace.md`](canonical/05_Project_Workspace.md) | مدل Project و Workspace | 📘 مدل معنایی | Decision Candidate |
+| 06 | [`06_Lite_Blueprint.md`](canonical/06_Lite_Blueprint.md) | بلوپرینت Atlas Lite | 📘 Blueprint محصول | Decision Candidate |
+| 07 | [`07_UI_Component_Blueprint.md`](canonical/07_UI_Component_Blueprint.md) | معماری UI و Interaction | 📘 قرارداد UX | Contract Candidate |
+| 08 | [`08_Design_System.md`](canonical/08_Design_System.md) | سیستم طراحی بصری | 🎨 Design Tokens | **Draft / Validation Required** |
+| 09 | [`09_Validation_Gates.md`](canonical/09_Validation_Gates.md) | گیت‌های اعتبارسنجی Prototype | 🚦 قرارداد اعتبارسنجی | Validation Contract / Pre-Implementation Gate |
+| 10 | [`10_Technical_Implementation.md`](canonical/10_Technical_Implementation.md) | قرارداد پیاده‌سازی فنی | 🔧 قرارداد فنی | Active — دارای تصمیمات OPEN |
+| 11 | [`11_Roadmap_Sprints.md`](canonical/11_Roadmap_Sprints.md) | نقشه راه و Sprint breakdown | 🗺️ مسیر اجرا | Execution Roadmap |
+| 12 | [`12_Atlas_Pro_Vision.md`](canonical/12_Atlas_Pro_Vision.md) | چشم‌انداز Atlas Pro | 🔮 Future Vision | خارج از scope Lite |
+| 13 | [`13_Changelog.md`](canonical/13_Changelog.md) | تاریخچه تغییرات | 📝 Record | — |
 
 ### راهنمای نقش‌ها
 
@@ -71,7 +71,7 @@ Project Atlas/
 | **Decision Candidate** | تصمیم پیشنهادی — نیاز به تصویب |
 | **Validation Required** | نیاز به آزمایش روی دستگاه واقعی |
 | **Contract Candidate** | قرارداد پیشنهادی — نیاز به بازبینی |
-| **Active Contract** | قرارداد فعال — دارای تصمیمات باز مشخص |
+| **Validation Contract / Pre-Implementation Gate** | قرارداد تعیین‌کننده شواهد و گیت‌های لازم پیش از implementation |
 | **Execution Roadmap** | نقشه اجرایی — قابل اجرا پس از عبور از Validation Gates |
 
 ---
@@ -128,8 +128,10 @@ Project Atlas/
 > هیچ Sprint‌ای نباید بدون رعایت Gateهای متناظر شروع شود.
 > مقادیر Design System (`08`) تا پایان Prototype قطعی نیستند.
 
-### برای پیاده‌سازی UI:
-`07` → `08 (Draft)` → `06`
+### برای کار متمرکز روی UI:
+[`07_UI_Component_Blueprint.md`](canonical/07_UI_Component_Blueprint.md) → [`08_Design_System.md`](canonical/08_Design_System.md) (Draft)
+
+این مسیر فقط ترتیب مطالعه اسناد UI است؛ برای ترتیب توسعه کامل، مسیر بالا را دنبال کنید و [`06_Lite_Blueprint.md`](canonical/06_Lite_Blueprint.md) را به‌عنوان زمینه و محدودیت‌های محصول در نظر بگیرید.
 
 ### برای درک معماری کامل:
 `01` → `02` → `03` → `04` → `05` → `06` → `07` → `09` → `10`
@@ -143,25 +145,25 @@ Project Atlas/
 
 | فایل | دلیل بایگانی | جایگزین در canonical |
 |------|----------------|---------------------|
-| `v01_00_Project_Vision.md` | refining شده در `01` | 01 |
-| `v01_01_Blueprint_Lite.md` | جایگزین شده با `06` | 06 |
-| `v01_03_UI_Design_Guide.md` | ادغام شده در `08` | 08 |
-| `v01_04_Component_Library.md` | ادغام شده در `08` | 08 |
-| `v01_05_Roadmap.md` | جایگزین شده با `11` | 11 |
-| `v01_07_TODO.md` | جایگزین شده با `11` | 11 |
-| `v01_08_Architecture.md` | توزیع شده در `01`-`05` | 01-05 |
-| `v01_09_API_Integration.md` | جایگزین شده با `04` | 04 |
-| `v01_11_Core_Philosophy_Audit.md` | سابقه ممیزی | — |
-| `v01_20_Documentation_Audit.md` | سابقه بازسازی | — |
+| [`v01_00_Project_Vision.md`](archive/v01_00_Project_Vision.md) | refining شده در `01` | 01 |
+| [`v01_01_Blueprint_Lite.md`](archive/v01_01_Blueprint_Lite.md) | جایگزین شده با `06` | 06 |
+| [`v01_03_UI_Design_Guide.md`](archive/v01_03_UI_Design_Guide.md) | ادغام شده در `08` | 08 |
+| [`v01_04_Component_Library.md`](archive/v01_04_Component_Library.md) | ادغام شده در `08` | 08 |
+| [`v01_05_Roadmap.md`](archive/v01_05_Roadmap.md) | جایگزین شده با `11` | 11 |
+| [`v01_07_TODO.md`](archive/v01_07_TODO.md) | جایگزین شده با `11` | 11 |
+| [`v01_08_Architecture.md`](archive/v01_08_Architecture.md) | توزیع شده در `01`-`05` | 01-05 |
+| [`v01_09_API_Integration.md`](archive/v01_09_API_Integration.md) | جایگزین شده با `04` | 04 |
+| [`v01_11_Core_Philosophy_Audit.md`](archive/v01_11_Core_Philosophy_Audit.md) | سابقه ممیزی | — |
+| [`v01_20_Documentation_Audit.md`](archive/v01_20_Documentation_Audit.md) | سابقه بازسازی | — |
 
 ---
 
 ## ⚠️ یادداشت‌های مهم
 
 1. **Canonical ≠ نهایی**: اسناد canonical «مرجع معتبر فعلی» هستند، نه لزوماً تصمیمات تصویب‌شده. هر سند وضعیت بلوغ خود را دارد.
-2. **Validation Gates**: تا وقتی `04_Termux_Integration.md` (Validation Required) و `08_Design_System.md` (Draft) تأیید نشده‌اند، پیاده‌سازی نباید مقادیر را قطعی تلقی کند.
-3. **Pro Vision خارج از scope**: `12_Atlas_Pro_Vision.md` چشم‌انداز آینده است و در Sprintهای Lite فعلی اجرا نمی‌شود.
-4. **Design Tokens**: `08_Design_System.md` مقادیر پیشنهادی دارد که پس از Prototype باید روی دستگاه واقعی تأیید شوند (طبق Gate در `09`).
+2. **Validation Gates**: تا وقتی [`04_Termux_Integration.md`](canonical/04_Termux_Integration.md) (Validation Required) و [`08_Design_System.md`](canonical/08_Design_System.md) (Draft) تأیید نشده‌اند، پیاده‌سازی نباید مقادیر را قطعی تلقی کند.
+3. **Pro Vision خارج از scope**: [`12_Atlas_Pro_Vision.md`](canonical/12_Atlas_Pro_Vision.md) چشم‌انداز آینده است و در Sprintهای Lite فعلی اجرا نمی‌شود.
+4. **Design Tokens**: [`08_Design_System.md`](canonical/08_Design_System.md) مقادیر پیشنهادی دارد که پس از Prototype باید روی دستگاه واقعی تأیید شوند (طبق Gate در `09`).
 5. **Archive**: اسناد archive با پیشوند `v01_` نشان‌دهنده نسخه اولیه هستند. برای کار فعال، فقط از `canonical/` استفاده کنید.
 
 ---

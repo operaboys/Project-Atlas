@@ -1952,15 +1952,19 @@ Needs Validation
 مرحله بعد:
 
 ```text
-15 Revised Lite Blueprint
+06_Lite_Blueprint.md (this document)
         ↓
-UI / Interaction / Component Blueprint
+07_UI_Component_Blueprint.md
         ↓
-Validation / Prototype Gates
+08_Design_System.md
         ↓
-Roadmap
+09_Validation_Gates.md
         ↓
-Pro Reassessment
+10_Technical_Implementation.md
+        ↓
+11_Roadmap_Sprints.md
+        ↓
+12_Atlas_Pro_Vision.md (reassess after Core/Lite validation)
 ```
 
 **End of Document**

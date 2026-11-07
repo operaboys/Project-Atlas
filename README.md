@@ -164,7 +164,7 @@ The Logger/Observability foundation developed in Atlas Prototype is a deliberate
 
 This does **not** canonize the rest of the Prototype app or its scaffolding. Prototype acceptance focuses on broad, truthful diagnostic coverage and evidence. Main Atlas must complete production-grade privacy/security and operational hardening before release. Secrets, credentials and raw private user content remain excluded from diagnostics in both stages.
 
-The detailed staged decision and current implementation evidence are maintained separately in the Logger & Observability Notion design records and Engineering Handoff.
+Read the [Logger Foundation and Maturity Charter](docs/logger-foundation-charter.md). The detailed staged decision and current implementation evidence are maintained separately in the Logger & Observability Notion design records and Engineering Handoff.
 
 ## ⚠️ یادداشت‌های مهم
 

@@ -212,3 +212,18 @@
 ---
 
 *پایان تاریخچه تغییرات — نسخه ۱.۰*
+
+
+---
+
+## 2026-11-08 — Logger & Observability continuity decision
+
+### Architecture/documentation alignment
+- Clarified that the validated Logger/Observability foundation developed in Atlas Prototype is intended to carry forward into the main Atlas Logger; it is not disposable prototype-only instrumentation.
+- Distinguished the reusable Logger core from unrelated Prototype scaffolding and experiment-specific implementation choices.
+- Separated Prototype observability acceptance from main-Atlas production hardening.
+- Reaffirmed that secrets, credentials and raw private user content remain excluded from diagnostics in both stages.
+- Added the Logger Foundation and Maturity Charter and aligned canonical logging guidance in documents 04, 06 and 10.
+
+### Scope
+Documentation-only. No application code, tests, database/schema, bootstrap, migration, workflow, or runtime behavior changed. The proposed documentation PR remains unmerged pending review.

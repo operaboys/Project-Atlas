@@ -1205,6 +1205,10 @@ sensitive terminal input
 
 Diagnostic logging باید opt-in و controlled باشد.
 
+### Prototype-to-main continuity
+
+The Logger/Observability core built in Prototype is a deliberate reusable foundation for main Atlas, not a temporary subsystem to discard. Prototype work validates breadth and truthful event coverage across the experimental app; main Atlas completes production privacy/security and operational hardening. This does not authorize collecting secrets or raw private user content in either stage, and does not make other Prototype scaffolding canonical. See the Logger continuity charter (ADR-OBS-026).
+
 ---
 
 # 57. Permissions

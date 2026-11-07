@@ -1615,6 +1615,12 @@ private file content
 
 باید redaction یا عدم ذخیره در نظر گرفته شود.
 
+## Logger maturity across Prototype and main Atlas
+
+The Logger/Observability foundation developed in Atlas Prototype is intentionally reusable and is to be carried forward into the main Atlas Logger; it is not disposable instrumentation. Prototype validation may emphasize broad, high-fidelity coverage of observed application, execution, Termux callback, recovery and diagnostic-health events. This does not make unrelated Prototype implementation choices canonical.
+
+The main Atlas release must complete production hardening: privacy enforcement, protected storage and access boundaries, retention/deletion, backup exclusion, export disclosure, resilience and resource limits. The following remain non-negotiable in both stages: never collect passwords, credentials, tokens, private keys or other secrets; do not persist raw stdout/stderr, sensitive terminal input or private file content as diagnostics. See the Logger continuity charter in Notion (ADR-OBS-026).
+
 ---
 
 # 64. Security Model at Integration Boundary

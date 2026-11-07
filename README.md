@@ -158,6 +158,14 @@ Project Atlas/
 
 ---
 
+## 🛡️ Logger & Observability — continuity decision
+
+The Logger/Observability foundation developed in Atlas Prototype is a deliberate exception to the general rule that Prototype implementation choices are not automatically canonical. Its validated event contract, taxonomy, producer boundaries, sink abstractions and correlation model are intended to be carried forward and evolved into the main Atlas Logger—not discarded as temporary test instrumentation.
+
+This does **not** canonize the rest of the Prototype app or its scaffolding. Prototype acceptance focuses on broad, truthful diagnostic coverage and evidence. Main Atlas must complete production-grade privacy/security and operational hardening before release. Secrets, credentials and raw private user content remain excluded from diagnostics in both stages.
+
+Read the [Logger Foundation and Maturity Charter](docs/logger-foundation-charter.md). The detailed staged decision and current implementation evidence are maintained separately in the Logger & Observability Notion design records and Engineering Handoff.
+
 ## ⚠️ یادداشت‌های مهم
 
 1. **Canonical ≠ نهایی**: اسناد canonical «مرجع معتبر فعلی» هستند، نه لزوماً تصمیمات تصویب‌شده. هر سند وضعیت بلوغ خود را دارد.

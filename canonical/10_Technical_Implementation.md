@@ -691,6 +691,13 @@ raw secrets
 credentials
 unnecessary user data
 
+
+### Logger implementation maturity
+
+The Logger/Observability core is designed to carry forward from Atlas Prototype into main Atlas. Treat its validated event contract, taxonomy, producer boundaries, sink abstractions and correlation model as reusable foundations—not throwaway prototype code. Prototype coverage and evidence are a distinct acceptance stage from production readiness.
+
+Main Atlas must complete the production-hardening gate for privacy enforcement, protected storage/access, retention/deletion, backup and export, resilience and resource bounds. These staged controls do not relax the prohibitions above: secrets and raw private content are never diagnostic payloads. This exception applies only to the Logger foundation; unrelated Prototype implementation choices remain evidence-dependent and non-canonical until separately accepted.
+
 ##33. Build Configuration
 
 Separate:
